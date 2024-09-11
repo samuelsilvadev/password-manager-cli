@@ -26,7 +26,7 @@ def verify_username?(username)
 end
 
 def verify_password?(password)
-  if password.empty?
+  if password.nil? or password.empty?
     puts "Password can't be empty"
     return false
   end

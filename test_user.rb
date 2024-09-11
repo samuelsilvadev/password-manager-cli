@@ -38,4 +38,40 @@ class UserIndex < Minitest::Test
 
     assert_equal "Username can't be empty\n", output[0]
   end
+
+  def test_valid_password
+    output = capture_io do
+      result = verify_password?("123456")
+      assert result
+    end
+
+    assert_equal "Valid password ✅\n", output[0]
+  end
+
+  def test_invalid_password
+    output = capture_io do
+      result = verify_password?("123456789")
+      assert !result
+    end
+
+    assert_equal "Invalid password 🚫\n", output[0]
+  end
+
+  def test_empty_password
+    output = capture_io do
+      result = verify_password?("")
+      assert !result
+    end
+
+    assert_equal "Password can't be empty\n", output[0]
+  end
+
+  def test_nil_password
+    output = capture_io do
+      result = verify_password?(nil)
+      assert !result
+    end
+
+    assert_equal "Password can't be empty\n", output[0]
+  end
 end
