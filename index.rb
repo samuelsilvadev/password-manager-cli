@@ -61,7 +61,7 @@ end
 def main
   user_selection = nil
 
-  puts "Welcome to the authenticator"
+  puts "Welcome to the best Password Manager CLI"
   break_line
 
   username = prompt_username
@@ -77,30 +77,22 @@ def main
 
   break_line
   puts "Welcome #{username}."
-  break_line
-  print_menu
-  user_selection = gets.chomp
 
   loop do
+    break_line
+    print_menu
+    user_selection = gets.chomp
+    break_line
+
     case user_selection
     when "1"
       add_new_service
-      break_line
-      print_menu
-      user_selection = gets.chomp
     when "2"
       get_service
-      break_line
-      print_menu
-      user_selection = gets.chomp
     when "3"
       print_all_credentials
-      break_line
-      print_menu
-      user_selection = gets.chomp
     else
       puts "Closing the password manager..."
-      user_selection = nil
       exit
     end
   end
