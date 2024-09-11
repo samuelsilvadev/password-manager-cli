@@ -45,10 +45,17 @@ def get_service
 end
 
 def print_all_credentials
-  PASSWORD_VAULT.each do |service, credentials|
+  if PASSWORD_VAULT.size == 0
+    return
+  end
+
+  PASSWORD_VAULT.each_with_index do |(service, credentials), index|
     puts "The credentials for #{service.to_s}"
     show_credentials(credentials)
-    break_line
+
+    if index != PASSWORD_VAULT.size - 1
+      break_line
+    end
   end
 end
 
